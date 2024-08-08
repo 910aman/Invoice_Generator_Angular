@@ -1,0 +1,6 @@
+input:focus,
+textarea:focus, input:hover, textarea:hover {
+    background-color: #fdf4db !important;
+    color: #555 !important;
+}
+
