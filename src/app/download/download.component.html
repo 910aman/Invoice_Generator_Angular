@@ -1,238 +1,292 @@
-<form>
-    <div
-        class="w-100 min-vh-100 mh-100 h-100 bg-white d-flex flex-column py-5 flex-grow-1"
-        style="padding-left: 40px;padding-right: 40px;">
-        <div class>
-            <div class="flex-row d-flex">
-                <div class="w-100 d-flex flex-column gap-2">
-                    <input type="text" [(ngModel)]="invoice.companyName"
-                        name="companyName" placeholder="Your Company"
-                        style="border-color: #555;"
-                        class="col-8 py-1 px-lg-3 fw-semibold fs-4 text-secondary focus-ring-secondary border-0 focusColor">
-                    <input type="text" [(ngModel)]="invoice.name"
-                        name="yourName"
+ <div
+    class="w-100 min-vh-100 mh-100 h-100 d-flex flex-column flex-grow-1 py-5 mb-4"
+    style="padding-left: 40px;padding-right: 40px;box-shadow: 0 0 17px 0 rgba(16, 40, 73, .09); background-color: #fff; margin-top: 10px; margin-bottom: 10px;">
+
+    <div style="width: fit-content;padding-left: 3px;padding-right: 3px;"
+        class="position-relative h-auto d-flex align-items-center justify-content-center">
+        <button
+            class="position-absolute text-white fw-bolder pb-1  fs-4 backgroundColor"
+            style="margin-left: -200px;margin-top: -67px; width: 50px;"
+            (click)="onClick()">
+            <svg width="35px" height="35px" viewBox="0 0 32 32"
+                xmlns="http://www.w3.org/2000/svg">
+                <g id="invoice" transform="translate(0 -248)">
+                    <path id="Path_30" data-name="Path 30"
+                        d="M6,279a4,4,0,0,0,4-4V249H31v26a4,4,0,0,1-4,4H6a5,5,0,0,1-5-5v-6h9"
+                        fill="none" stroke="#498efc" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2" />
+                    <line id="Line_10" data-name="Line 10" x2="17"
+                        transform="translate(14 275)" fill="none"
+                        stroke="#498efc" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2" />
+                    <g id="Group_1" data-name="Group 1">
+                        <path id="Path_31" data-name="Path 31"
+                            d="M21.139,266.983v1.092a.482.482,0,0,1-.481.48.493.493,0,0,1-.528-.48v-1.092a5.506,5.506,0,0,1-3.424-1.356.652.652,0,0,1-.214-.5.686.686,0,0,1,.627-.694.592.592,0,0,1,.4.149,4.772,4.772,0,0,0,2.613,1.173v-4.034c-1.687-.464-3.441-1.026-3.441-3.06,0-1.72,1.439-2.927,3.441-3.043V254.48a.492.492,0,0,1,.528-.48.48.48,0,0,1,.481.48v1.157a4.93,4.93,0,0,1,2.878,1.158.6.6,0,0,1,.214.48.663.663,0,0,1-.645.677.623.623,0,0,1-.4-.149,3.821,3.821,0,0,0-2.051-.908v3.588c1.7.479,3.506,1.124,3.506,3.274C24.645,265.263,23.685,266.784,21.139,266.983ZM20.13,256.844c-1.19.083-2.018.761-2.018,1.737,0,.926.893,1.307,2.018,1.637Zm1.009,5.161v3.753c1.571-.164,2.084-1.108,2.084-1.885C23.223,262.8,22.3,262.352,21.139,262.005Z"
+                            fill="#f35d02" />
+                    </g>
+                </g>
+            </svg>
+        </button>
+    </div>
+    <div class>
+        <div class="flex-row d-flex">
+            <div class="w-100 d-flex flex-column gap-2">
+                <input type="text" [(ngModel)]="invoice.companyName"
+                    name="companyName" placeholder="Your Company"
+                    style="border-color: #555;"
+                    class="col-8 py-1 px-lg-3 fw-semibold fs-4 text-secondary focus-ring-secondary border-0 focusColor">
+                <input type="text" [(ngModel)]="invoice.name"
+                    name="yourName"
+                    placeholder="Your Name"
+                    class="col-8 py-1 px-lg-3 fs-5 text-secondary border-0 focusColor">
+                <input type="text" [(ngModel)]="invoice.companyAddress"
+                    name="companyAddress"
+                    placeholder="Company's Address"
+                    class="col-8 py-1 px-lg-3 fs-5 text-secondary border-0 focusColor">
+                <input type="text" [(ngModel)]="invoice.companyAddress2"
+                    name="companyCity"
+                    placeholder="City, State, Zip"
+                    class="col-8 py-1 px-lg-3 fs-5 text-secondary border-0 focusColor">
+            </div>
+            <div class="w-100 d-flex justify-content-end">
+                <input type="text" [(ngModel)]="invoice.title"
+                    name="title" placeholder="Invoice"
+                    style="font-size:3.5rem;"
+                    class=" col-8 h-50 text-end py-1 px-lg-3 fw-semibold text-dark border-0 placeholder-glow">
+            </div>
+        </div>
+        <div class="flex-row d-flex" style="margin-top: 40px;">
+            <div class="w-50 d-flex flex-column gap-2">
+                <input type="text" [(ngModel)]="invoice.billTo"
+                    name="billTo" placeholder="BillTo#"
+                    class="col-8 py-1 px-lg-3 fw-bold fs-5 text-secondary border-0">
+                <input type="text" [(ngModel)]="invoice.clientName"
+                    name="clinetName"
+                    placeholder="Your Client's Name"
+                    class="col-8 py-1 px-lg-3 fs-5 text-secondary border-0">
+                <input type="text" [(ngModel)]="invoice.clientAddress"
+                    name="clientAddress"
+                    placeholder="Client's Address"
+                    class="col-8 py-1 px-lg-3 fs-5 text-secondary border-0">
+                <input type="text" [(ngModel)]="invoice.clientAddress2"
+                    name="clinetAddress2"
+                    placeholder="City, State, Zip"
+                    class="col-8 py-1 px-lg-3 fs-5 text-secondary border-0">
+            </div>
+            <div class="w-auto d-flex flex-column gap-3">
+                <div class="d-flex gap-3">
+                    <input type="text"
+                        [(ngModel)]="invoice.invoiceTitleLabel"
+                        name="invoiceTitleLabel" placeholder="Company Name"
+                        class="col-4 py-1 px-lg-3 fw-bold fs-5 text-secondary border-0">
+                    <input type="text" [(ngModel)]="invoice.invoiceTitle"
+                        name="invoiceTitle" placeholder="INV-164"
+                        class="col-4  py-1 px-lg-3 fs-5 text-secondary border-0 focus-ring-danger">
+                </div>
+                <div class="d-flex gap-3">
+                    <input type="text"
+                        [(ngModel)]="invoice.invoiceDateLabel"
+                        name="invoiceDateLabel"
                         placeholder="Your Name"
-                        class="col-8 py-1 px-lg-3 fs-5 text-secondary border-0 focusColor">
-                    <input type="text" [(ngModel)]="invoice.companyAddress"
-                        name="companyAddress"
-                        placeholder="Company's Address"
-                        class="col-8 py-1 px-lg-3 fs-5 text-secondary border-0 focusColor">
-                    <input type="text" [(ngModel)]="invoice.companyAddress2"
-                        name="companyCity"
-                        placeholder="City, State, Zip"
-                        class="col-8 py-1 px-lg-3 fs-5 text-secondary border-0 focusColor">
-                </div>
-                <div class="w-100 d-flex justify-content-end">
-                    <input type="text" [(ngModel)]="invoice.title"
-                        name="title" placeholder="Invoice"
-                        style="font-size:3.5rem;"
-                        class=" col-8 h-50 text-end py-1 px-lg-3 fw-semibold text-dark border-0 placeholder-glow">
-                </div>
-            </div>
-            <div class="flex-row d-flex" style="margin-top: 40px;">
-                <div class="w-50 d-flex flex-column gap-2">
-                    <input type="text" [(ngModel)]="invoice.billTo"
-                        name="billTo" placeholder="BillTo#"
-                        class="col-8 py-1 px-lg-3 fw-bold fs-5 text-secondary border-0">
-                    <input type="text" [(ngModel)]="invoice.clientName"
-                        name="clinetName"
-                        placeholder="Your Client's Name"
-                        class="col-8 py-1 px-lg-3 fs-5 text-secondary border-0">
-                    <input type="text" [(ngModel)]="invoice.clientAddress"
-                        name="clientAddress"
-                        placeholder="Client's Address"
-                        class="col-8 py-1 px-lg-3 fs-5 text-secondary border-0">
-                    <input type="text" [(ngModel)]="invoice.clientAddress2"
-                        name="clinetAddress2"
-                        placeholder="City, State, Zip"
-                        class="col-8 py-1 px-lg-3 fs-5 text-secondary border-0">
-                </div>
-                <div class="w-50 d-flex justify-content-end gap-4">
-                    <div class=" d-flex flex-column gap-3">
-                        <input type="text"
-                            [(ngModel)]="invoice.invoiceTitleLabel"
-                            name="invoiceTitleLabel" placeholder="Company Name"
-                            class="col-10 py-1 px-lg-3 fw-bold fs-5 text-secondary border-0">
-                        <input type="text"
-                            [(ngModel)]="invoice.invoiceDateLabel"
-                            name="invoiceDateLabel"
-                            placeholder="Your Name"
-                            class="col-10 py-1 px-lg-3 fs-5 text-secondary border-0">
+                        class="col-4 py-1 px-lg-3 fs-5 text-secondary border-0">
 
-                    </div>
-                    <div class="d-flex flex-column gap-3">
-                        <input type="text" [(ngModel)]="invoice.invoiceTitle"
-                            name="invoiceTitle" placeholder="INV-164"
-                            class="col-10 py-1 px-lg-3 fs-5 text-secondary border-0 focus-ring-danger">
-                        <input type="date" [(ngModel)]="invoice.invoiceDate"
-                            name="invoiceDate"
-                            placeholder="DD-MM-YYYY"
-                            class="col-10 py-1 px-lg-3 fs-5 text-secondary border-0 form-control">
-                    </div>
-                </div>
-            </div>
-            <div class="table-responsive-sm pt-5">
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th style="width: 40%; background-color: #555;"
-                                scope="col">
-                                <input type="text"
-                                    [(ngModel)]="invoice.productLineDescription"
-                                    name="productLineDescription"
-                                    style=" background-color: #555;"
-                                    class="col-10 py-1 px-lg-3 fs-5 text-secondary border-0 text-white fw-bold focusColor">
-                            </th>
-                            <th
-                                style="width: 20%; background-color: #555;"
-                                scope="col">
-                                <input type="text"
-                                    [(ngModel)]="invoice.productLineQuantity"
-                                    name="productLineQuantity"
-                                    style=" background-color: #555; text-align: end;"
-                                    class="col-10 w-100 py-1 px-lg-3 fs-5 text-secondary border-0 text-white fw-bold ">
-                            </th>
-                            <th
-                                style="width: 20%; background-color: #555;"
-                                scope="col">
-                                <input type="text"
-                                    [(ngModel)]="invoice.productLineQuantityRate"
-                                    name="productLineQuantityRate"
-                                    style=" background-color: #555; text-align: end;"
-                                    class="col-10 w-100 py-1 px-lg-3 fs-5 text-secondary border-0 text-white fw-bold ">
-                            </th>
-                            <th
-                                style="width: 20%; background-color: #555;"
-                                scope="col">
-                                <input type="text"
-                                    [(ngModel)]="invoice.productLineQuantityAmount"
-                                    name="productLineQuantityAmount"
-                                    style=" background-color: #555; text-align: end;"
-                                    class="col-10 w-100 py-1 px-lg-3 fs-5 text-secondary border-0 text-white fw-bold ">
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- @for (item of productsList; track 'id') {
-                        <tr>
-                            <th scope="row"  style="width: 40%; background-color: #555;">
-                                <input type="text"
-                                    [(ngModel)]="item.description"
-                                    name="description"
-                                    style=" background-color: #555;"
-                                    class="col-10 py-1 px-lg-3 fs-5 text-secondary border-0 text-white ">
-                            </th>
-                            <td  style="width: 20%; background-color: #555;">
-                                <input type="text"
-                                    [(ngModel)]="item.quantity"
-                                    name="productLineQuantityAmount"
-                                    style=" background-color: #555;"
-                                    class="col-10 py-1 px-lg-3 fs-5 text-secondary border-0 text-white ">
-                            </td>
-                            <td  style="width: 20%; background-color: #555;">
-                                <input type="text"
-                                    [(ngModel)]="item.rate"
-                                    name="productLineQuantityAmount"
-                                    style=" background-color: #555;"
-                                    class="col-10 py-1 px-lg-3 fs-5 text-secondary border-0 text-white ">
-                            </td>
-                            <td  style="width: 20%; background-color: #555;">400</td>
-                        </tr>
-                        } -->
-                        <tr>
-                            <th scope="row"
-                                style="width: 40%;">
-                                <textarea type="text"
-                                    name="description"
-                                    placeholder="Brochure Design"
-                                    class="col-10 w-100 py-1 px-lg-3 fs-5 text-secondary border-0 text-black fw-bold"
-                                    style="max-height: 80px; min-height: 40px;"></textarea>
-                            </th>
-                            <td style="width: 20%;">
-                                <input type="text"
-                                    placeholder="2"
-                                    name="quantity"
-                                    class="col-10 w-100 py-1 px-lg-3 fs-5 text-secondary border-0 text-black text-end fw-semibold ">
-                            </td>
-                            <td style="width: 20%;">
-                                <input type="text"
-                                    name="rate"
-                                    placeholder="40.00"
-                                    class="col-10 w-100 py-1 px-lg-3 fs-5 text-secondary border-0 text-black text-end ">
-                            </td>
-                            <td style="width: 20%;">
-                                <span
-                                    class="w-100 justify-content-end align-self-center d-flex px-3 fs-5">
-                                    400.00
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"
-                                style="width: 40%;">
-                                <textarea type="text"
-                                    name="description"
-                                    placeholder="Brochure Design"
-                                    class="col-10 w-100 py-1 px-lg-3 fs-5 text-secondary border-0 text-black fw-bold"
-                                    style="max-height: 80px; min-height: 40px;"></textarea>
-                            </th>
-                            <td style="width: 20%;">
-                                <input type="text"
-                                    placeholder="2"
-                                    name="quantity"
-                                    class="col-10 w-100 py-1 px-lg-3 fs-5 text-secondary border-0 text-black text-end fw-semibold">
-                            </td>
-                            <td style="width: 20%;">
-                                <input type="text"
-                                    name="rate"
-                                    placeholder="53.00"
-                                    class="col-10 w-100 py-1 px-lg-3 fs-5 text-secondary border-0 text-black text-end">
-                            </td>
-                            <td style="width: 20%;">
-                                <span
-                                    class="w-100 justify-content-end align-self-center d-flex px-3 fs-5">
-                                    760.00
-                                </span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="w-100 pt-3 d-flex ">
-                <div class="w-100 d-flex gap-1 align-items-center">
-                    <span>
-                        <svg width="30px" height="30px" viewBox="0 0 48 48"
-                            version="1" xmlns="http://www.w3.org/2000/svg"
-                            enable-background="new 0 0 48 48">
-                            <circle fill="#4CAF50" cx="24" cy="24" r="21" />
-                            <g fill="#ffffff">
-                                <rect x="21" y="14" width="6" height="20" />
-                                <rect x="14" y="21" width="20" height="6" />
-                            </g>
-                        </svg>
-                    </span>
-                    <h2 class="fs-5 d-flex justify-content-center">Add New
-                        Item</h2>
-                </div>
-
-                <div class="w-100 d-flex gap-4 ">
-                    <input type="text" [(ngModel)]="invoice.subTotalLabel"
-                        name="subTotalLabel"
-                        class="col-5 py-1 px-lg-3 fs-5 text-secondary border-0">
-                    <span class="col-5 py-1 px-lg-3 fs-5 text-secondary border-0">
-                        400
-                    </span>
+                    <input type="date" [(ngModel)]="invoice.invoiceDate"
+                        name="invoiceDate"
+                        placeholder="dd-MMM-yyyy"
+                        class="col-4 py-1 px-lg-3 fs-5 text-secondary border-0 ">
                 </div>
             </div>
         </div>
-    </div>
-    <div
-        class="w-100 h-auto d-flex align-items-center justify-content-center py-3">
-        <button
-            class="bg-dark bg-opacity-50 text-white w-25 fw-bolder fs-4"
-            (click)="onClick()">
-            Download Pdf
-        </button>
-    </div>
+        <div class="table-responsive-sm pt-5">
+            <table class="table">
+                <thead class>
+                    <tr>
+                        <th style="width: 40%; background-color: #555;"
+                            scope="col">
+                            <input type="text"
+                                [(ngModel)]="invoice.productLineDescription"
+                                name="productLineDescription"
+                                style=" background-color: #555;"
+                                class="col-10 w-100 py-1 px-lg-3 fs-5 text-secondary border-0 text-white fw-bold focusColor">
+                        </th>
+                        <th
+                            style="width: 20%; background-color: #555;"
+                            scope="col">
+                            <input type="text"
+                                [(ngModel)]="invoice.productLineQuantity"
+                                name="productLineQuantity"
+                                style=" background-color: #555; text-align: end;"
+                                class="col-10 w-100 py-1 px-lg-3 fs-5 text-secondary border-0 text-white fw-bold ">
+                        </th>
+                        <th
+                            style="width: 20%; background-color: #555;"
+                            scope="col">
+                            <input type="text"
+                                [(ngModel)]="invoice.productLineQuantityRate"
+                                name="productLineQuantityRate"
+                                style=" background-color: #555; text-align: end;"
+                                class="col-10 w-100 py-1 px-lg-3 fs-5 text-secondary border-0 text-white fw-bold ">
+                        </th>
+                        <th
+                            style="width: 20%; background-color: #555;"
+                            scope="col">
+                            <input type="text"
+                                [(ngModel)]="invoice.productLineQuantityAmount"
+                                name="productLineQuantityAmount"
+                                style=" background-color: #555; text-align: end; padding-right: 12px;"
+                                class="col-10 w-100 py-1 fs-5 text-secondary border-0 text-white fw-bold ">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (item of invoice.productLines; track 'id') {
+                    <tr>
+                        <td
+                            style="text-align: center;display: none;">{{$index+1}}</td>
 
-</form>
+                        <td scope="row"
+                            style="width: 40%;background-color: #fff;">
+                            <textarea type="text"
+                                [(ngModel)]="item.description"
+                                name="description"
+                                class="col-10 w-100 py-1 px-lg-3 fs-5 text-secondary border-0 text-black fw-bold"
+                                style="max-height: 100px; min-height: 40px;"></textarea>
+                        </td>
+                        <td style="width: 20%;background-color: #fff;">
+                            <input type="text"
+                                [(ngModel)]="item.quantity"
+                                name="quantity"
+                                class="col-10 w-100 py-1 px-lg-3 fs-5 text-secondary border-0 text-black text-end fw-semibold ">
+                        </td>
+                        <td style="width: 20%;background-color: #fff;">
+                            <input type="text"
+                                [(ngModel)]="item.rate"
+                                name="rate"
+                                class="col-10 w-100 py-1 px-lg-3 fs-5 text-secondary border-0 text-black text-end ">
+                        </td>
+                        <td style="width: 20%;background-color: #fff;">
+                            <span
+                                class="w-100 justify-content-end align-self-center d-flex fs-5"
+                                style="padding-right: 12px;">
+                                400.00
+                            </span>
+                        </td>
+                    </tr>
+                    }
+                    <!-- <tr>
+                        <th scope="row"
+                            style="width: 40%;background-color: #fff;">
+                            <textarea type="text"
+                                name="description"
+                                placeholder="Brochure Design"
+                                class="col-10 w-100 py-1 px-lg-3 fs-5 text-secondary border-0 text-black fw-bold"
+                                style="max-height: 100px; min-height: 40px;"></textarea>
+                        </th>
+                        <td style="width: 20%;background-color: #fff;">
+                            <input type="text"
+                                placeholder="2"
+                                name="quantity"
+                                class="col-10 w-100 py-1 px-lg-3 fs-5 text-secondary border-0 text-black text-end fw-semibold">
+                        </td>
+                        <td style="width: 20%;background-color: #fff;">
+                            <input type="text"
+                                name="rate"
+                                placeholder="53.00"
+                                class="col-10 w-100 py-1 px-lg-3 fs-5 text-secondary border-0 text-black text-end">
+                        </td>
+                        <td style="width: 20%;background-color: #fff;">
+                            <span
+                                class="w-100 justify-content-end align-self-center d-flex fs-5"
+                                style="padding-right: 12px;">
+                                760.00
+                            </span>
+                        </td>
+                    </tr> -->
+                </tbody>
+            </table>
+        </div>
+        <div class="d-flex">
+            <div class="d-flex gap-2 addNewItem"
+                style="height: fit-content;width: 90%;padding-left: 25px; ">
+                <span style=" cursor: pointer;">
+                    <svg width="30px" height="30px" viewBox="0 0 48 48"
+                        version="1" xmlns="http://www.w3.org/2000/svg"
+                        enable-background="new 0 0 48 48">
+                        <circle fill="#4CAF50" cx="24" cy="24" r="21" />
+                        <g fill="#ffffff">
+                            <rect x="21" y="14" width="6" height="20" />
+                            <rect x="14" y="21" width="20" height="6" />
+                        </g>
+                    </svg>
+                </span>
+                <span class="fs-5 d-flex justify-content-center"
+                    style="cursor: pointer;">
+                    Add New Item
+                </span>
+            </div>
+            <div class="w-100 d-flex flex-column gap-3 pt-3">
+                <div
+                    class="w-100 d-flex gap-4 justify-content-between px-2  ps-4">
+                    <input type="text" [(ngModel)]="invoice.subTotalLabel"
+                        name="subTotalLabel"
+                        class="w-50 py-1 px-3 fs-5 fw-semibold text-secondary border-0">
+                    <span
+                        class="col-5 py-1 fs-5 fw-bold text-secondary border-0 text-end"
+                        style="padding-right: 12px;">
+                        340.00
+                    </span>
+                </div>
+                <div
+                    class="w-100 d-flex gap-4 justify-content-between px-2  ps-4">
+                    <input type="text" [(ngModel)]="invoice.taxLabel"
+                        name="taxLabel"
+                        class="w-50 py-1 px-3 fs-5 fw-semibold text-secondary border-0">
+                    <span
+                        class="col-5 py-1 fs-5 fw-bold text-secondary border-0 text-end"
+                        style="padding-right: 12px;">
+                        34.00
+                    </span>
+                </div>
+                <div
+                    class="w-100 d-flex gap-4 justify-content-between py-3 px-2 ps-4"
+                    style="background-color: #ddd;">
+                    <input type="text" [(ngModel)]="invoice.totalLabel"
+                        name="totalLabel"
+                        class="w-50 py-1 px-3 fs-5 fw-semibold text-secondary border-0 fw-bold"
+                        style="background-color: #ddd;">
+                    <div class="d-flex justify-content-end">
+                        <input type="text" [(ngModel)]="invoice.currency"
+                            name="currency"
+                            class="py-1 px-3 fs-5 fw-semibold text-secondary border-0 fw-bold text-end"
+                            style="background-color: #ddd; width: 80px;">
+                        <span
+                            class=" py-1 fs-5 fw-bold text-secondary border-0 text-end"
+                            style="padding-right: 12px; min-width: 6rem; width:auto; max-width: 100%;">
+                            374.00
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            class="w-100 d-flex flex-column gap-2 justify-content-between pt-5">
+            <input type="text" [(ngModel)]="invoice.notesLabel"
+                name="notesLabel"
+                class="w-100 py-1 px-3 fs-5 fw-bold  text-secondary border-0">
+            <textarea type="text" [(ngModel)]="invoice.notes"
+                name="notes"
+                class="w-100 py-1 px-3 fs-5 fw-semibold text-secondary border-0"
+                style="max-height: 100px; min-height: 40px;"></textarea>
+        </div>
+        <div
+            class="w-100 d-flex flex-column gap-2 justify-content-between pt-2">
+            <input type="text" [(ngModel)]="invoice.termLabel"
+                name="termLabel"
+                class="w-100 py-1 px-3 fs-5 fw-bold  text-secondary border-0">
+            <textarea type="text" [(ngModel)]="invoice.term"
+                name="term"
+                class="w-100 py-1 px-3 fs-5 fw-semibold text-secondary border-0"
+                style="max-height: 100px; min-height: 40px;"></textarea>
+        </div>
+    </div>
+</div>

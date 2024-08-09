@@ -1,6 +1,24 @@
 input:focus,
-textarea:focus, input:hover, textarea:hover {
+textarea:focus,
+input:hover,
+textarea:hover {
     background-color: #fdf4db !important;
     color: #555 !important;
+    border-radius: 5px;
 }
 
+input,
+textarea {
+    background-color: #fff;
+}
+.backgroundColor{
+    background-color: transparent;
+    border: 0px;
+}
+.backgroundColor:hover{
+    background-color: #dad7d7;
+
+}
+.addNewItem:hover {
+text-decoration: underline;
+}

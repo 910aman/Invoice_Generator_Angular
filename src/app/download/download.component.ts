@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
-import { Products, TInvoice } from '../model/InitialData';
+import { ProductLine, Products, TInvoice } from '../model/InitialData';
+import { style } from '@angular/animations';
 // import { Products, TInvoice, } from '../model/DataType';
 // import { initialInvoice } from '../model/InitialData';
 
@@ -20,11 +21,14 @@ export class DownloadComponent {
 
   invoice: TInvoice = new TInvoice();
   productsList: Products[] = [];
-
+  products: ProductLine = new ProductLine();
+  
   onClick() {
-
-
-    let docDefinition = {
+    const titleName = this.invoice.invoiceTitle || "Invoice Generator"
+    pdfMake.createPdf({
+      info: {
+        title: `${titleName}`,
+      },
       content: [
         { text: "", style: "container" },
         {
@@ -32,88 +36,181 @@ export class DownloadComponent {
             [{
               text: `${this.invoice.companyName}`,
               color: "#555",
-              fontSize: 25,
+              fontSize: 20,
               bold: true,
-              margin: 4,
               style: "commonStyle"
             },
             {
               text: `${this.invoice.name}`,
-              margin: 4,
+              marginTop: 4,
               style: "commonStyle",
             }, {
               text: `${this.invoice.companyAddress}`,
               style: "commonStyle",
-              margin: 4
+              marginTop: 4
             }, {
               text: `${this.invoice.companyAddress2}`,
-              margin: 4,
+              marginTop: 4,
               style: "commonStyle"
             }], {
               text: `${this.invoice.title}`,
               color: "#555",
               fontSize: 40,
+              alignment: "right",
               bold: true,
 
             }],
-        }, { text: "", margin: 14 }, {
+        },
+        { text: "", margin: 14 }, {
           columns: [
             [{
               text: `${this.invoice.billTo}`,
               color: "#555",
-              fontSize: 20,
+              fontSize: 15,
               bold: true,
-              margin: 4,
+              marginTop: 4,
               style: "commonStyle"
             },
             {
               text: `${this.invoice.clientName}`,
-              margin: 4,
+              marginTop: 4,
               style: "commonStyle",
             }, {
               text: `${this.invoice.clientAddress}`,
               style: "commonStyle",
-              margin: 4
+              marginTop: 4
             }, {
               text: `${this.invoice.clientAddress2}`,
-              margin: 4,
+              marginTop: 4,
               style: "commonStyle"
-            }], {
+            }],
+
+            {
+              columns: [[{
+                text: `${this.invoice.invoiceTitleLabel}`,
+                style: "commonStyle",
+                bold: true,
+                fontSize: 15,
+                marginTop: 6
+              }, {
+                text: `${this.invoice.invoiceDateLabel}`,
+                style: "commonStyle",
+                marginTop: 6
+              }],
+              [{
+                text: `${this.invoice.invoiceTitle}`,
+                marginTop: 4,
+                style: "commonStyle"
+              },
+              {
+                text: `${this.invoice.invoiceDate}`,
+                marginTop: 6,
+                style: "commonStyle"
+              }]]
+            }
+          ]
+        }, { text: "", margin: 14 },
+        {
+
+          table: {
+            headerRows: 1,
+            widths: [250, '16%', '16%', '16%'],
+            body: [
+              [{ text: `${this.invoice.productLineDescription}`, style: "commonStyle", bold: true },
+              { text: `${this.invoice.productLineQuantity}`, alignment: "right", style: "commonStyle", bold: true },
+              { text: `${this.invoice.productLineQuantityRate}`, alignment: "right", style: "commonStyle", bold: true },
+              { text: `${this.invoice.productLineQuantityAmount}`, alignment: "right", style: "commonStyle", bold: true, }
+
+              ],
+              [{ text: 'fixed-width cells have exactly the specified width', color: '#555', style: "commonStyle", width: "40%", },
+              { text: '2', alignment: "right", color: '#555', style: "commonStyle" },
+              { text: '40.00', alignment: "right", color: '#555', style: "commonStyle" },
+              { text: '80.00', alignment: "right", color: '#555', style: "commonStyle" }],
+              [{ text: 'fixed-width cells have exactly the specified width', color: '#555', style: "commonStyle", width: "40%", },
+              { text: '2', alignment: "right", color: '#555', style: "commonStyle" },
+              { text: '40.00', alignment: "right", color: '#555', style: "commonStyle" },
+              { text: '80.00', alignment: "right", color: '#555', style: "commonStyle" }]
+            ]
+          }
+        },
+        {
+          columns: [
+            [{ text: "", background: "#ddd", }],
+            {
               columns: [
                 [{
-                  text: `${this.invoice.invoiceTitleLabel}`,
-                  style: "commonStyle",
-                  bold: true,
-                  fontSize: 20,
-                  margin: 4
-                }, {
-                  text: `${this.invoice.invoiceDateLabel}`,
-                  margin: 4,
-                  fonSize: 18,
+                  text: `${this.invoice.subTotalLabel}`,
+                  alignment: "left",
+                  marginTop: 20,
                   style: "commonStyle"
-                }], {
-                  columns: [[{
-                    text: `${this.invoice.invoiceTitle}`,
+                }, {
+                  text: `${this.invoice.taxLabel}`,
+                  alignment: "left",
+                  marginTop: 8,
+                  style: "commonStyle"
+                }, {
+                  text: `${this.invoice.totalLabel}`,
+                  alignment: "left",
+                  marginTop: 8,
+                  style: "commonStyle"
+                },
+                ], [{
+                  text: "400.00",
+                  alignment: "right",
+                  marginTop: 20,
+                  style: "commonStyle"
+                },
+                {
+                  text: "40.00",
+                  marginTop: 8,
+                  alignment: "right",
+                  style: "commonStyle",
+
+                },
+                {
+                  columns: [{
+                    text: "$",
+                    marginTop: 8,
+                    alignment: "right",
                     style: "commonStyle",
 
-                    margin: 6
                   }, {
-                    text: `${this.invoice.invoiceDate}`,
-                    margin: 6,
-                    color: "#555",
-                    fontSize: 15,
+                    text: "440.00",
+                    marginTop: 8,
+                    alignment: "right",
+                    style: "commonStyle",
 
-                  }]]
+                  }]
                 }
-              ]
-            }
-
-          ]
+                ]]
+            },
+          ],
+        },
+        [{
+          text: `${this.invoice.notesLabel}`,
+          marginTop: 25,
+          style: "commonStyle",
+          bold: true
+        }, {
+          text: `${this.invoice.notes}`,
+          marginTop: 8,
+          style: "commonStyle"
         }],
+        [{
+          text: `${this.invoice.termLabel}`,
+          marginTop: 25,
+          style: "commonStyle",
+          bold: true
+        }, {
+          text: `${this.invoice.term}`,
+          marginTop: 8,
+          style: "commonStyle"
+        },]
+
+      ],
       styles: {
         container: {
           margin: 0,
-          padding: 0,
         },
         commonStyle: {
           color: "#555",
@@ -124,15 +221,11 @@ export class DownloadComponent {
           fontSize: 22,
           bold: true
         },
-        firstSection: {
+        width50: {
 
         }
       }
-
-    };
-
-
-    pdfMake.createPdf(docDefinition).print();
+    }).open();
 
 
   }

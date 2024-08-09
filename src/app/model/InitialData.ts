@@ -1,16 +1,20 @@
 export interface Products {
+    
     description: string
     quantity: string
     rate: string
 }
 
 export class ProductLine {
+    
     "description": string;
     "quantity": string;
     "rate": string;
     constructor() {
-        this.description= '';
-        this.quantity=  '1';
+        
+        this.description= 'Hello Aman';
+        // this.description= 'Brochure Design';
+        this.quantity=  '4';
         this.rate= '0.00';
     }
 }
@@ -40,6 +44,7 @@ export class TInvoice  {
     productLineQuantityRate: string;
     productLineQuantityAmount: string;
     subTotalLabel: string;
+    productLines: Products[] | undefined;
     taxLabel: string;
     totalLabel: string;
     currency: string;
@@ -71,6 +76,20 @@ export class TInvoice  {
         this.productLineQuantity = "Qty";
         this.productLineQuantityRate = "Rate";
         this.productLineQuantityAmount = "Amount";
+        this.productLines= [
+                {
+                    description: 'Brochure Design',
+                    quantity: '2',
+                    rate: '100.00',
+                },
+                {
+                    ...ProductLine,
+                    description: "New Design Appear",
+                    quantity: "4",
+                    rate: "600.00"
+                },
+        
+            ];
         this.subTotalLabel = "Sub Total";
         this.taxLabel = "Sale Tax (10%)";
         this.totalLabel = "TOTAL";
@@ -108,15 +127,15 @@ export class TInvoice  {
 //     productLineQuantity: 'Qty',
 //     productLineQuantityRate: 'Rate',
 //     productLineQuantityAmount: 'Amount',
-//     productLines: [
-//         {
-//             description: 'Brochure Design',
-//             quantity: '2',
-//             rate: '100.00',
-//         },
-//         { ...initialProducts, },
+    // productLines: [
+    //     {
+    //         description: 'Brochure Design',
+    //         quantity: '2',
+    //         rate: '100.00',
+    //     },
+    //     { ...initialProducts, },
 
-//     ],
+    // ],
 //     subTotalLabel: 'Sub Total',
 //     taxLabel: 'Sale Tax (10%)',
 //     totalLabel: 'TOTAL',
